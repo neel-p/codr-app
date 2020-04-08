@@ -8,6 +8,7 @@ import com.codr.aws.repo.UserRepo;
 import com.codr.aws.util.AppUtils;
 
 import java.util.List;
+import java.util.UUID;
 
 public class UserService {
 
@@ -36,4 +37,5 @@ public class UserService {
                 .getUserByGuid(guid)
                 .orElseThrow(() -> new UserNotFoundException("No user found in the system"));
     }
+
 }
