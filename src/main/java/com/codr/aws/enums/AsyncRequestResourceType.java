@@ -3,7 +3,7 @@ package com.codr.aws.enums;
 import java.util.stream.Stream;
 
 public enum AsyncRequestResourceType {
-    USER(1, "/users/%s")
+    USER_TYPE(1, "/userType/%s")
     ;
 
     private final int t;

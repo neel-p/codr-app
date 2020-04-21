@@ -2,6 +2,8 @@ package com.codr.aws.util;
 
 import com.codr.aws.dto.ApiResponse;
 import com.codr.aws.exceptions.BadInputException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 
 import javax.validation.ConstraintViolation;
@@ -29,29 +31,31 @@ public class AppUtils {
                 }
             }
         }
-        if(!errors.isEmpty()) {
+        if (!errors.isEmpty()) {
             throw new BadInputException(errors);
         }
     }
 
-    public static Response buildResponse(ApiResponse resp) {
+    public static Response buildResponse(ApiResponse resp) throws JsonProcessingException {
         Status status = Status.OK;
-        if(resp == null || resp.isError()) {
+        if (resp == null || resp.isError()) {
             status = Status.INTERNAL_SERVER_ERROR;
         }
+        ObjectMapper mapper = new ObjectMapper();
+        String str = mapper.writeValueAsString(resp).replaceAll("'\'", "");
         return Response
                 .status(status)
-                .entity(resp)
+                .entity(str)
                 .build();
     }
 
     public static void logEx(Logger logger, ApiResponse response, Throwable t, String message) {
         logger.error(message, t);
         response.setError(true);
-        if(t instanceof BadInputException) {
+        if (t instanceof BadInputException) {
             BadInputException be = (BadInputException) t;
             Set<String> errors = be.getErrors();
-            if(errors != null && !errors.isEmpty()) {
+            if (errors != null && !errors.isEmpty()) {
                 response.add("errors", errors);
             } else {
                 response.add("error", be.getMessage());
@@ -74,4 +78,5 @@ public class AppUtils {
             return null;
         }
     }
+
 }

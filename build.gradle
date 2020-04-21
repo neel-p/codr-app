@@ -23,7 +23,13 @@ dependencies {
                 'org.glassfish.web:javax.el:2.2.6',
                 'com.amazonaws:aws-java-sdk-rds:1.11.743',
                 'com.amazonaws:aws-java-sdk-dynamodb:1.11.748',
-                'com.amazonaws:aws-java-sdk-cognitoidp:1.11.759'
+                'com.amazonaws:aws-java-sdk-cognitoidp:1.11.759',
+                'com.amazonaws:aws-java-sdk-iam:1.11.762'
+                //'com.amazonaws:aws-java-sdk:1.11.753',
+                //'com.amazonaws:aws-java-sdk-core:1.11.762',
+                //'software.amazon.awssdk:cognitoidentity:2.11.12',
+                //'software.amazon.awssdk:cognitoidentityprovider:2.11.12'
+
         )
         exclude group: 'com.fasterxml.jackson.dataformat', module: 'jackson-dataformat-cbor'
     }

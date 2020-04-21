@@ -1,6 +1,5 @@
 package com.codr.aws.repo.impl;
 
-import com.codr.aws.dto.User;
 import com.codr.aws.dto.UserType;
 import com.codr.aws.repo.UserTypeRepo;
 import org.jdbi.v3.core.Jdbi;
